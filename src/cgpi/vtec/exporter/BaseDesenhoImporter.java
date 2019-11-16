@@ -78,6 +78,7 @@ public class BaseDesenhoImporter implements Importer {
     private void getRetangulos(Document doc) {
         NodeList retangulosNodeList = doc.getElementsByTagName("Retangulo");
         List<Ponto> pontos;
+        List<String> cores;
         for (int i = 0; i < retangulosNodeList.getLength(); i++) {
             Node retanguloNode = retangulosNodeList.item(i);
             if (retanguloNode.getNodeType() == Node.ELEMENT_NODE) {
@@ -88,6 +89,11 @@ public class BaseDesenhoImporter implements Importer {
 
                 desenho.addRetangulo(new Retangulo(pontos.get(0), pontos.get(1)));
                 pontos.clear();
+
+                NodeList coresNode = retanguloElemento.getElementsByTagName("Cor");
+                cores = getCores(coresNode);
+                desenho.addCor(new Cor(cores));
+                cores.clear();
             }
         }
     }
@@ -95,6 +101,7 @@ public class BaseDesenhoImporter implements Importer {
     private void getCirculos(Document doc) {
         NodeList circuloNodeList = doc.getElementsByTagName("Circulo");
         List<Ponto> pontos;
+        List<String> cores;
         for (int i = 0; i < circuloNodeList.getLength(); i++) {
             Node circuloNode = circuloNodeList.item(i);
             if (circuloNode.getNodeType() == Node.ELEMENT_NODE) {
@@ -108,6 +115,11 @@ public class BaseDesenhoImporter implements Importer {
                 double raioTotal = Double.parseDouble(raio) * (canvas.getWidth());
                 desenho.addCirculo(new Circulo(pontos.get(0), raioTotal));
                 pontos.clear();
+
+                NodeList coresNode = circuloElement.getElementsByTagName("Cor");
+                cores = getCores(coresNode);
+                desenho.addCor(new Cor(cores));
+                cores.clear();
             }
         }
     }
@@ -115,22 +127,27 @@ public class BaseDesenhoImporter implements Importer {
     private void getRetas(Document doc) {
         NodeList retaNodeList = doc.getElementsByTagName("Reta");
         List<Ponto> pontos;
+        List<String> cores;
         for (int i = 0; i < retaNodeList.getLength(); i++) {
             Node retaNode = retaNodeList.item(i);
             if (retaNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element retaElemento = (Element) retaNode;
                 NodeList pontosNode = retaElemento.getElementsByTagName("Ponto");
-
                 pontos = getPontos(pontosNode);
-
                 desenho.addReta(new Reta(pontos));
                 pontos.clear();
+
+                NodeList coresNode = retaElemento.getElementsByTagName("Cor");
+                cores = getCores(coresNode);
+                desenho.addCor(new Cor(cores));
+                cores.clear();
             }
         }
     }
 
     private void getPoligono(Document doc) {
         List<Ponto> pontos;
+        List<String> cores;
         List<Reta> retas = new ArrayList<>();
         NodeList nodeList = doc.getElementsByTagName("Poligono");
         for (int i = 0; i < nodeList.getLength(); i++) {
@@ -150,6 +167,11 @@ public class BaseDesenhoImporter implements Importer {
                 desenho.addPoligano(new Poligano(retas));
                 retas.clear();
                 pontos.clear();
+
+                NodeList coresNode = figureElement.getElementsByTagName("Cor");
+                cores = getCores(coresNode);
+                desenho.addCor(new Cor(cores));
+                cores.clear();
             }
         }
     }
@@ -165,6 +187,27 @@ public class BaseDesenhoImporter implements Importer {
             pontos.add(new Ponto(x, y));
         }
         return pontos;
+    }
+
+    private List<String> getCores(NodeList coresNode) {
+        List<String> cores = new ArrayList<>();
+        for (int k = 0; k < coresNode.getLength(); k++) {
+            Element corElement = (Element) coresNode.item(k);
+
+            Node rFile = corElement.getElementsByTagName("R").item(0);
+            String red = rFile.getTextContent();
+
+            Node gFile = corElement.getElementsByTagName("G").item(0);
+            String green = gFile.getTextContent();
+
+            Node bFile = corElement.getElementsByTagName("B").item(0);
+            String blue = bFile.getTextContent();
+
+            cores.add(red);
+            cores.add(green);
+            cores.add(blue);
+        }
+        return cores;
     }
 
     protected void replicateEvent() {

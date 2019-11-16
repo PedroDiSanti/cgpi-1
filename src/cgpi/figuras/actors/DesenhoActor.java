@@ -15,9 +15,9 @@ public class DesenhoActor implements Desenhe {
 
     private final GraphicsContext graphicsContext;
 
-    private final Color corReta = Color.RED;
+    //private final Color corReta = Color.RED;
 
-    private final Color corCirculo = Color.GREEN;
+    //private final Color corCirculo = Color.GREEN;
 
     private final Color corPonto = Color.BLUE;
 
@@ -74,8 +74,8 @@ public class DesenhoActor implements Desenhe {
 
     private void desenheReta(Reta reta) {
         if (reta != null) {
-            this.graphicsContext.setFill(corReta);
-            this.graphicsContext.setStroke(corReta);
+            this.graphicsContext.setFill(reta.setColor());
+            this.graphicsContext.setStroke(reta.setColor());
             this.graphicsContext.setLineWidth(WIDTH);
             this.graphicsContext.strokeLine(reta.getPointACoordinates()[0], reta.getPointACoordinates()[1],
                     reta.getPointBCoordinates()[0], reta.getPointBCoordinates()[1]);
@@ -89,8 +89,8 @@ public class DesenhoActor implements Desenhe {
     }
 
     private void desenheCirculo(Circulo circulo) {
-        graphicsContext.setFill(corCirculo);
-        graphicsContext.setStroke(corCirculo);
+        graphicsContext.setFill(circulo.setColor());
+        graphicsContext.setStroke(circulo.setColor());
         graphicsContext.setLineWidth(WIDTH);
         graphicsContext.strokeOval((int) circulo.getCentro().getX() - (int) circulo.getRaio(), (int) circulo.getCentro().getY() - (int) circulo.getRaio(), 2 * (int) circulo.getRaio(), 2 * (int) circulo.getRaio());
     }

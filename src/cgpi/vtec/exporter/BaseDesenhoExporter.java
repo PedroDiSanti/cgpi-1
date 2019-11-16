@@ -112,6 +112,11 @@ public class BaseDesenhoExporter implements Exporter {
 
             createRaio(doc, circuloTag, circulo.getRaio());
 
+            Element cor = doc.createElement("Cor");
+            createColor(doc, circuloTag, cor, "R", circulo.getColorR());
+            createColor(doc, circuloTag, cor, "G", circulo.getColorG());
+            createColor(doc, circuloTag, cor, "B", circulo.getColorB());
+
             rootElement.appendChild(circuloTag);
         }
     }
@@ -129,6 +134,11 @@ public class BaseDesenhoExporter implements Exporter {
             createPonto(doc, retaTag, retaPontoB, "x", getPorporcao(reta.getPointB().getX(), canvas.getWidth()));
             createPonto(doc, retaTag, retaPontoB, "y", getPorporcao(reta.getPointB().getY(), canvas.getHeight()));
 
+            Element cor = doc.createElement("Cor");
+            createColor(doc, retaTag, cor, "R", reta.getColorR());
+            createColor(doc, retaTag, cor, "G", reta.getColorG());
+            createColor(doc, retaTag, cor, "B", reta.getColorB());
+
             rootElement.appendChild(retaTag);
         }
     }
@@ -142,6 +152,13 @@ public class BaseDesenhoExporter implements Exporter {
         ponto.setTextContent(String.valueOf(value));
         retaPonto.appendChild(ponto);
         retaTag.appendChild(retaPonto);
+    }
+
+    private void createColor(Document doc, Element retaTag, Element retaCor, String colorType, int value) {
+        Element cor = doc.createElement(colorType);
+        cor.setTextContent(String.valueOf(value));
+        retaCor.appendChild(cor);
+        retaTag.appendChild(retaCor);
     }
 
     private void createRaio(Document doc, Element retaTag, double value) {

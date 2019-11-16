@@ -1,5 +1,7 @@
 package cgpi.figuras.model;
 
+import javafx.scene.paint.Color;
+
 import java.util.List;
 
 /**
@@ -10,6 +12,12 @@ public class Reta extends Figura {
     private static final String POINTO_A = "A";
 
     private static final String POINTO_B = "B";
+
+    int R = (int)(Math.random()*256);
+    int G = (int)(Math.random()*256);
+    int B= (int)(Math.random()*256);
+
+    private final Color corReta = Color.rgb(R, G, B);
 
     public Reta(Ponto pointA, Ponto pointB) {
         this.addPoint(POINTO_A, pointA);
@@ -36,4 +44,12 @@ public class Reta extends Figura {
     public double[] getPointBCoordinates() {
         return new double[]{this.getPointB().getX(), this.getPointB().getY()};
     }
+
+    public int getColorR() { return  this.R; }
+
+    public int getColorG() { return  this.G; }
+
+    public int getColorB() { return  this.B; }
+
+    public Color setColor() { return corReta; }
 }

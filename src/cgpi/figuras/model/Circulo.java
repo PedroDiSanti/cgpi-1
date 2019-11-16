@@ -1,6 +1,7 @@
 package cgpi.figuras.model;
 
 import javafx.geometry.Point2D;
+import javafx.scene.paint.Color;
 
 import java.util.List;
 
@@ -14,6 +15,14 @@ public class Circulo extends Figura {
     private static final String BORDA = "borda";
 
     private final double raio;
+
+    int R = (int)(Math.random()*256);
+
+    int G = (int)(Math.random()*256);
+
+    int B= (int)(Math.random()*256);
+
+    private final Color corReta = Color.rgb(R, G, B);
 
     public Circulo(Ponto centro, Ponto borda,double raio) {
         this.addPoint(CENTRO, centro);
@@ -44,4 +53,12 @@ public class Circulo extends Figura {
     public double getRaio() {
         return raio;
     }
+
+    public int getColorR() { return  this.R; }
+
+    public int getColorG() { return  this.G; }
+
+    public int getColorB() { return  this.B; }
+
+    public Color setColor() { return corReta; }
 }

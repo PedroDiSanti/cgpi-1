@@ -43,7 +43,7 @@
                 <SceneButton fx:id="poliganoComMouseButton" alignment="CENTER" contentDisplay="CENTER"
                              mnemonicParsing="false" onMouseClicked="#setScene" prefHeight="35.0" prefWidth="155.0"
                              styleClass="sidebar-btn"
-                             text="Poligano" textAlignment="CENTER" scenes="POLIGANO_COM_MOUSE"/>
+                             text="Polígono" textAlignment="CENTER" scenes="POLIGANO_COM_MOUSE"/>
                 <Pane fx:id="canvasPane" prefHeight="224.0" prefWidth="143.0" styleClass="canvas">
                     <children>
                         <Canvas fx:id="canvas" height="224.0" layoutX="3.0" layoutY="3.0" width="143.0"/>

@@ -11,9 +11,11 @@ import java.util.Map;
 public class Figura {
 
     private final Map<String, Ponto> points;
+    private final List<String> colors;
 
     public Figura() {
         points = new HashMap<String, Ponto>();
+        colors = new ArrayList<String>();
     }
 
     public void addPoint(String pointName, Ponto point) {
@@ -26,5 +28,9 @@ public class Figura {
 
     public List<Ponto> getPontos() {
         return new ArrayList<Ponto>(points.values());
+    }
+
+    public void addColor(String color) {
+        colors.add(color);
     }
 }

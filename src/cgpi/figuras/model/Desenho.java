@@ -14,6 +14,8 @@ public class Desenho {
 
     private final List<Ponto> pontos;
 
+    private final List<Cor> cores;
+
     private final List<Retangulo> retangulos;
 
     private final List<Poligano> poliganos;
@@ -23,6 +25,7 @@ public class Desenho {
         this.retas = new ArrayList<>();
         this.circulos = new ArrayList<>();
         pontos = new ArrayList<>();
+        cores = new ArrayList<>();
         retangulos = new ArrayList<>();
         poliganos = new ArrayList<>();
     }
@@ -55,6 +58,8 @@ public class Desenho {
         this.pontos.add(ponto);
     }
 
+    public void addCor(Cor cor) { this.cores.add(cor); }
+
     public void addRetangulo(Retangulo retangulo) {
         this.retangulos.add(retangulo);
     }
@@ -69,6 +74,10 @@ public class Desenho {
 
     public void addRetas(List<Reta> retas) {
         this.retas.addAll(retas);
+    }
+
+    public void addCores(List<Cor> cores) {
+        this.cores.addAll(cores);
     }
 
     public void addCirculos(List<Circulo> circulos) {
@@ -87,6 +96,7 @@ public class Desenho {
         retas.clear();
         circulos.clear();
         pontos.clear();
+        cores.clear();
         retangulos.clear();
         poliganos.clear();
     }
